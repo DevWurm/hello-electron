@@ -1,8 +1,11 @@
 {
   "name": "hello-electron",
+  "main": "dist/entry.js",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "run": "electron .",
+    "start": "concurrently \"webpack-dev-server --port=4200\" \"electron src/entry.live.js\"",
     "ng": "ng",
     "start": "webpack-dev-server --port=4200",
     "build": "webpack",
@@ -35,6 +38,7 @@
     "@types/node": "~6.0.60",
     "autoprefixer": "^6.5.3",
     "codelyzer": "~2.0.0",
+    "concurrently": "^3.4.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.1",
     "cssnano": "^3.10.0",

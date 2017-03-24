@@ -1,3 +1,4 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -19,6 +20,7 @@ const deployUrl = "";
 
 
 module.exports = {
+  "target": "electron-renderer",
   "devtool": "source-map",
   "resolve": {
     "extensions": [
@@ -201,6 +203,10 @@ module.exports = {
         "ignore": "**/.gitkeep"
       }
     }),
+    new CopyWebpackPlugin([{
+      context: path.resolve(__dirname, "src"),
+      from: "entry.js"
+    }]),
     new ProgressPlugin(),
     new HtmlWebpackPlugin({
       "template": "./src/index.html",
@@ -293,14 +299,17 @@ module.exports = {
     })
   ],
   "node": {
-    "fs": "empty",
-    "global": true,
-    "crypto": "empty",
-    "tls": "empty",
-    "net": "empty",
-    "process": true,
+    "fs": false,
+    "global": false,
+    "crypto": false,
+    "tls": false,
+    "net": false,
+    "process": false,
     "module": false,
     "clearImmediate": false,
-    "setImmediate": false
+    "setImmediate": false,
+    "Buffer": false,
+    "__filename": false,
+    "__dirname": false
   }
 };

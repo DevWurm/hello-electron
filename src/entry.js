@@ -18,8 +18,10 @@ function createWindow () {
   }))
 
   // Open the DevTools when in dev mode.
-  if(process.env.NODE_ENV=='development')
+  if(process.env.NODE_ENV=='development') {
     win.webContents.openDevTools()
+    require('devtron').install()
+  }
 
   // Emitted when the window is closed.
   win.on('closed', () => {
